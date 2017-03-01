@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/static/css/board.css" />
+	</head>
+
+	<body>
+		{% if form is not defined %}
+		{% set form = None %}
+		{% endif %}
+	
+		{% if errors is not defined %}
+		{% set errors = None %}
+		{% endif %}
+		<div class="block">
+			<div class="container header">
+			
+				<div class="main_titre element">
+					<div class="logo">
+						<img src="/static/img/logo2.png" alt="logo"/>
+					</div>
+				</div>
+			
+				<div class="title element">{{title}}</div>
+			
+					<div class="conn element">
+						<form method="post">
+							<input type="text" name="redirect" style="display: none;" value={{request.path}} readonly>
+							{% if session['nickname'] %}
+							<div class="msg_connected">
+								Connecté en tant que {{session['nickname']}}
+							</div>
+							<div>
+								<input type="submit" name="Submit" value="Déconnexion" formaction="/logout">
+							</div>
+							{% else %}
+							<div class="msg_not_connected">
+								Vous n'êtes pas connecté !
+							</div>
+							<div>
+								<input type="text" name="nickname" placeholder="Entrez un pseudo" tabindex="1">
+								<input type="password" name="password" placeholder="Mot de passe" tabindex="2" minlength="6" maxlength="30">
+							</div>
+							<div>
+								<input type="submit" name="Submit" value="Connexion" formaction="/login">
+								<input type="submit" name="Submit" value="Inscription" formaction="/register">
+							</div>
+							{% endif %}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+		<div class="nav block">
+			<div class="boardlist block">
+				{% for board in nav.board_list %}
+				<a class="boardname" href="/boards/{{board.name}}">{{board.name}}</a>
+				{% endfor %}
+			</div>
+			<h1>
+				<div class="boardname">{{nav.board_current.name}}</div>
+			</h1>
+			<h2>
+				{{nav.board_current.description}}
+			</h2>
+
+		</div>
+		<br>
+		<div class="postthread block">
+			<h1>
+				Commencer une discussion
+			</h1>
+			{% if session['nickname'] %}
+				<form method="POST">
+				<input type="text" name="redirect" style="display: none;" value="{{request.path}}" readonly>
+					Titre du sujet :<br>
+					<input type="text" name="title" value="{{form.title}}" maxlength="128" required><br><br>
+					Contenu :<br> 
+					<textarea name="content" value="{{form.content}}"rows="4" cols="50"></textarea> <br><br>
+					Fichiers: <br>
+					<input type="file"><br>
+					<input type="file"><br>
+					<input type="file"><br>
+					<input type="file"><br>
+					<input type="file"><br><br>
+					<input type="submit" name="Submit" value="Poster" formaction="/post/thread/{{nav.board_current.id}}">
+				</form>
+			{% else %}
+			<div class = "msg_not_connected">
+				Vous devez etre connecté pour pouvoir poster !
+			</div>
+			{%endif%}
+		</div>
+		<br>
+
+		<div class="threadlist block">
+			{% for thread in threads%}
+			<div class="thread_view">
+				<div class="thread_header">
+                    <div class="thread_name">
+                        <p>{{thread.title}}</p>
+                    </div>
+                    <div class="thread_nb_replies">
+                        <p>{{thread.nb_replies}} posts</p>
+                        <a href="/threads/{{thread.id}}">(Répondre)</a>
+                    </div>
+				</div>
+				{% for post in thread.posts%}
+				<div class="msg">
+					<div class="msg_header">
+						<div>
+							<div>
+								<div class="msg_author">
+									<p>{{post.nickname}}</p>
+						 		</div>
+								<div class="msg_date">
+									<p>{{post.time_created|string|dt}}</p>
+						 		</div>
+						 	</div>
+							<div class="msg_id">
+								<p>{{post.id}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="msg_content">
+						{% if post.files|length != 0 %}
+						<div class=thumb_list>
+							<div>
+								<img src="http://placehold.it/250x250" alt="image">
+								<div class="thumbs_text">
+									<div>
+									the_file_number_2.gif (250ko)
+									</div>
+								</div>
+							</div>
+							<div>
+								<img src="http://placehold.it/250x250" alt="image">
+								<div class="thumbs_text">
+									<div>
+									photo
+									</div>
+								</div>
+							</div>
+							
+							<div>
+								<img src="http://placehold.it/250x250" alt="image">
+								<div class="thumbs_text">
+									<div>
+									photo
+									</div>
+								</div>
+							</div>
+							<div>
+								<img src="http://placehold.it/250x250" alt="image">
+								<div class="thumbs_text">
+									<div>
+									photo
+									</div>
+								</div>
+							</div>
+						</div>
+						{%endif%}
+						<div>
+							{{post.content}}
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
+	</body>
+
+ </html>

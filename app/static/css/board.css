@@ -1,0 +1,567 @@
+html, body
+{
+    margin:0;
+    padding:0;
+}
+
+body
+{
+    background-image: url('/static/img/b2.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.block
+{
+    background-color: rgba(0, 0, 0, 0.2);
+    padding:1em;
+    border:0.5em solid rgba(0, 0, 0, 0.4);
+}
+
+.logo
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.logo img
+{
+    width: 40px;
+    height: 40px;
+}
+.title
+{
+    text-align: center;
+    text-decoration: underline;
+    margin:0px;
+    margin-left:20px;
+    margin-right:20px;
+    font-size:2em;
+    padding:0px;
+    color:white;
+}
+
+.header
+{
+    display: flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+}
+
+.header > div
+{
+}
+/*
+
+.header h1
+{
+    margin:0px;
+    margin-left:0.2em;
+    color:white;
+    font-size: 2em;
+}
+
+.header h2
+{
+    font-size: 1em;
+    margin: 0px 0px 0px 0px;
+}
+
+*/
+
+
+.container
+{
+    display: flex;
+    flex-wrap:wrap;
+    margin:0em -1em -1em 0em;
+}
+
+.element
+{
+    margin:0em 1em 1em 0em;
+}
+
+.conn
+{
+    display: flex;
+    justify-content:flex-end;
+    align-content:flex-start;
+    flex:1;
+    /*
+    display: flex;
+    */
+}
+
+.conn form
+{
+    margin:0px;
+    margin-right: -1em;
+    display: flex;
+    justify-content:flex-end;
+    align-content: center;
+    flex-wrap:wrap;
+    align-items:baseline;
+}
+
+.conn form > div
+{
+    margin:0px;
+    margin-right: 1em;
+    display: flex;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+}
+
+.msg_not_connected
+{
+    margin:auto;
+    color:white;
+    padding:0.2em;
+    background-color: rgba(50, 0, 0, 0.5);
+}
+
+.msg_connected
+{
+    margin:auto;
+    color:white;
+    padding:0.2em;
+    background-color: rgba(0, 50, 0, 0.5);
+}
+
+.main_titre
+{
+    display:flex;
+    flex-direction: column;
+}
+
+.nav
+{
+    display:flex;
+    flex-direction:column;
+}
+
+.nav h1
+{
+    margin:0.5em auto 0em auto;
+}
+
+.nav h2
+{
+    margin:0em auto 0.5em auto;
+}
+
+.boardlist
+{
+    display: flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:0.5em 0em 0em 0em;
+}
+
+.boardlist a
+{
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    padding:0.1em 0.2em 0.1em 0.2em;
+}
+
+.boardlist a:hover
+{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.boardname:before
+{
+    content:'/';
+}
+
+.boardname:after
+{
+    content:'/';
+}
+
+
+.postthread
+{
+    display: flex;
+    flex-direction:column;
+}
+
+.postthread form
+{
+    max-width: 100%;
+    margin:auto;
+}
+
+.postthread textarea
+{
+    max-width: 100%;
+}
+
+.postthread h1
+{
+    margin:auto auto 0.5em auto;
+}
+
+.thread
+{
+    background-color: rgba(255, 255, 255, 0.2);
+    border:0.1em solid black;
+    padding:0.2em;
+    border-radius: 0.5em;
+}
+
+.thread .post:hover
+{
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/*
+.threadlist .thread:not(:last-of-type)
+{
+    margin-bottom: 1em;
+}
+*/
+
+.thread .post:not(:first-child)
+{
+    margin-left:5%;
+}
+
+.thread .post:first-child
+{
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.thread .post:first-child:hover
+{
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.post
+{
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    max-height: 15em;
+}
+
+.post_img
+{
+    float:left;
+    padding:0px;
+    margin:0px;
+    margin-right:1em;
+}
+
+.post_img img
+{
+    width:100%;
+    /*
+    max-width: 100%;
+    height: auto;
+   
+    */
+}
+
+
+
+.post p
+{
+    margin:0px;
+}
+
+
+.miniature
+{
+    width:400px;
+    border: dashed blue 1px;
+}
+
+.miniature img
+{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+.imgsource
+{
+    position: relative;
+}
+
+.imgsource:hover
+{
+     background-color: rgba(0, 0, 0, 0.2);
+}
+
+div.imgsource input[type="radio"]
+{
+    display: none;
+}
+
+div.imgsource input[type="radio"]:checked ~ div.highlight
+{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+div.imgsource input[type="radio"] ~ div.shown
+{
+    display: none;
+}
+
+div.imgsource input[type="radio"]:checked ~ div.shown
+{
+    display:initial;
+}
+
+.highlight
+{
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+/*
+div.imgsrc:hover
+{
+    background-color: #FF0000;
+}
+*/
+
+.imgsource
+{
+    padding:0.5em;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.imgsource .full
+{
+    display:block;
+    box-sizing: border-box;
+}
+
+.thread_view
+{
+    border:0.1em solid black;
+    display:flex;
+    flex-direction:column;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.thread_view p
+{
+    margin:0em;
+    padding:0em;
+
+}
+
+
+
+.msg:not(:nth-child(2))
+{
+    margin-left: 5%;
+    margin-top:0em;
+}
+
+.threadlist > .thread_view:not(:last-child)
+{
+    margin-bottom:1em;
+}
+/*
+<div>
+                        <div class="thread_name">
+                            <p>Le nom du sujet (postez ce que vous voulez)</p>
+                        </div>
+                        <div class="thread_nb_replies">
+                            <p>125 réponses</p>
+                        </div>
+                    </div>
+*/
+.thread_header
+{
+    color:white;
+    padding:0.3em;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    outline:0.1em solid red;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.thread_header .thread_nb_replies
+{
+    display: flex;
+}
+
+.thread_header .thread_nb_replies p
+{
+    color:rgb(150, 150, 255);
+}
+
+.thread_header .thread_nb_replies a
+{
+    margin-left: 0.5em;
+    color:rgb(200, 200, 250);
+}
+
+.msg
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    margin:0.3em;
+    border:0.1em solid black;
+}
+
+.msg:hover
+{
+    background-color: white;
+}
+
+.msg_header
+{
+    background-color: rgba(200, 200, 255, 0.5);
+    padding: 0.3em;
+    border-bottom: 0.1em solid black;
+}
+
+.msg_author
+{
+    color:rgb(255, 80, 80);
+}
+
+
+.msg_date
+{
+    color:rgb(80, 80, 80);
+}
+
+.msg_id
+{
+    color:rgb(80, 80, 255);
+}
+
+.msg_header > div:nth-child(1)
+{
+    display: flex;
+    justify-content:space-between;
+}
+
+.msg_header > div:nth-child(1) > div:nth-child(1)
+{
+    display: flex;
+}
+
+.msg_header > div:nth-child(1) > div:nth-child(1) > div:nth-child(2)
+{
+    margin-left: 0.5em;
+}
+
+.msg_replies
+{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.msg_replies > div
+{
+    display:flex;
+}
+
+.msg_replies > div > div
+{
+    display:flex;
+    overflow: auto;
+}
+
+.msg_replies > div > div > p
+{
+}
+.toclear
+{
+    clear:both;
+}
+.msg_content
+{
+    padding:0.5em;
+}
+
+
+
+.thumb_list
+{
+    display: flex;
+    margin-bottom:0.5em;
+    margin-right:0.5em;
+    float:left;
+    max-width:100%;
+    overflow:auto;
+}
+
+.thumb_list > div
+{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin:0.25em;
+    padding: 0.25em;
+}
+
+.thumbs_text
+{
+    display: block;
+    max-width: 250px;
+    max-height: 1em;
+    overflow: hidden;
+}
+
+.msg:not(:nth-child(2)) .thumbs_text
+{
+    max-width: 150px;
+}
+
+.thumbs_text > div
+{
+    text-align: center;
+    white-space: nowrap;
+    overflow: auto;
+}
+
+
+.thumb_list > div > img
+{
+    display: block;
+    margin: auto;
+}
+
+.msg:not(:nth-child(2)) .thumb_list img
+{
+    max-width: 150px;
+    max-height: 150px;
+}
+
+
+
+.register
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.register h1
+{
+    margin:auto;
+}
+.register .connected
+{
+    margin:auto;
+    padding:0.2em;
+    background-color: rgba(50, 0, 0, 0.5);
+    color:white;
+}

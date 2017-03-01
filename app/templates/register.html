@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/static/css/board.css" />
+	</head>
+
+	<body>
+	{% if redirect is not defined %}
+	{% set redirect = '/' %}
+	{% endif %}
+
+	{% if form is not defined %}
+	{% set form = None %}
+	{% endif %}
+
+	{% if errors is not defined %}
+	{% set errors = None %}
+	{% endif %}
+		<div class="block">
+			<div class="container header">
+			
+				<div class="main_titre element">
+					<div class="logo">
+						<img src="/static/img/logo2.png" alt="logo"/>
+					</div>
+				</div>
+			
+				<div class="title element"></div>
+					<div class="conn element">
+						<form method="post">
+							<input type="text" name="redirect" style="display: none;;" value={{request.path}} readonly>
+							{% if session['nickname'] %}
+							<div class="msg_connected">
+								Connecté en tant que {{session['nickname']}}
+							</div>
+							<div>
+								<input type="submit" name="Submit" value="Déconnexion" formaction="/logout">
+							</div>
+							{% else %}
+							<div class="msg_not_connected">
+								Vous n'êtes pas connecté !
+							</div>
+							<div>
+								<input type="text" name="nickname" placeholder="Entrez un pseudo" tabindex="1">
+								<input type="password" name="password" placeholder="Mot de passe" tabindex="2" minlength="6" maxlength="30">
+							</div>
+							<div>
+								<input type="submit" name="Submit" value="Connexion" formaction="/login">
+								<input type="submit" name="Submit" value="Inscription" formaction="/register">
+							</div>
+							{% endif %}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="postthread block">
+			<h1>Inscription</h1>
+			{% if session['nickname']%}
+			<div class="msg_connected">Vous ne pouvez pas vous inscrire alors que vous êtes déjà connecté !</div>
+			{% else %}
+			<form method="post">
+				<input type="text" name="redirect" style="display: none;" value="{{redirect}}">
+				Pseudo : <br>
+				<input type="text" name="nickname" value="{{form['nickname']}}" maxlength="128" required>{{errors['nickname']}}<br><br>
+				Mot de passe :<br>
+				<input type="password" name="password" minlength="6" maxlength="128" required value="{{form['password']}}">{{errors.password}}<br><br>
+				Confirmation du mot de passe :<br>
+				<input type="password" name="password_confirm" minlength="6" maxlength="128" required>{{errors.password_confirm}}<br><br>
+				<input type="submit" name="Submit" value="S'inscrire" required formaction="/register">
+			</form>
+			{% endif %}
+		</div>
+	</body>
+</html>
